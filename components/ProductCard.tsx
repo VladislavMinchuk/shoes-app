@@ -1,39 +1,38 @@
 import React from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { IProduct } from '../types';
 import { useDispatch } from 'react-redux';
+import { ProductAddBtn, ProductAddBtnTxt, ProductCardFooter, ProductCardStyled, ProductImage, ProductPriceText, ProductTitleText } from './UI/ProductCart';
+import { CARD_IMG_HEIGHT, CARD_WIDTHS } from '../const';
 import { addToCart } from '../store/cartSlice';
-import { PrimaryButton, ProductImage, ProductPriceText, ProductTitleText, SecondaryButton, WhiteButtonText } from './UI';
 
-interface Props {
+export interface IProductCardProps {
   product: IProduct;
+  cardSize: WidthCardType;
   onPress: () => void;
-}
+};
 
-const ProductCard = ({ product, onPress }: Props) => {
+export type WidthCardType = keyof typeof CARD_WIDTHS;
+export type HeightImgType = keyof typeof CARD_IMG_HEIGHT;
+
+const ProductCard = ({ product, cardSize = 'md', onPress }: IProductCardProps) => {
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.card}>
-      <ProductImage source={product.image} style={styles.image} />
-      <ProductTitleText>{product.title}</ProductTitleText>
-      <ProductPriceText>$ {product.price}</ProductPriceText>
-      <View style={{marginBottom: 10}}>
-        <PrimaryButton onPress={onPress}>
-          <WhiteButtonText>Детальніше</WhiteButtonText>
-        </PrimaryButton>
-      </View>
-      <SecondaryButton>
-        <WhiteButtonText>+</WhiteButtonText>
-      </SecondaryButton>
-      {/* <Button title="До кошика" onPress={() => dispatch(addToCart(product))} /> */}
-    </View>
+    <ProductCardStyled widthCard={cardSize}>
+      <TouchableOpacity onPress={onPress}>
+        <ProductImage heightCard={cardSize} source={product.image} />
+        <ProductTitleText>{product.title}</ProductTitleText>
+      </TouchableOpacity>
+      <ProductCardFooter>
+        <ProductPriceText>$ {product.price}</ProductPriceText>
+        <ProductAddBtn onPress={() => dispatch(addToCart(product))}>
+          <ProductAddBtnTxt>+</ProductAddBtnTxt>
+        </ProductAddBtn>
+      </ProductCardFooter>
+    </ProductCardStyled>
   );
 };
 
-const styles = StyleSheet.create({
-  card: { width: 170, margin: 10 },
-  image: { width: '100%', height: 220, resizeMode: 'cover' },
-});
 
 export default ProductCard;

@@ -4,15 +4,44 @@ import { TabParamList } from './types';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
 import CategoryScreen from '../screens/CategoryScreen';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { THEME } from '../const';
 
 const Tab = createBottomTabNavigator<TabParamList>();
+const screenOptions = {
+  tabBarShowLabel: false,
+  tabBarHideOnKeyboard: true,
+  headerShown: false,
+  tabBarStyle: {
+    elevation: 0,
+    height: 70,
+  }
+};
 
 export default function TabNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} options={{ title: '🏠 Головна' }} />
-      <Tab.Screen name="Category" component={CategoryScreen} options={{ title: '👤 Категорії' }} />
-      <Tab.Screen name="Cart" component={CartScreen} options={{ title: '🛒 Кошик' }} />
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen name="Home" component={HomeScreen} options={{
+        tabBarIcon: ({ focused }) => {
+          return <Ionicons name='home'
+          size={24}
+          color={focused ? THEME.secondaryColor : THEME.primaryColor } />
+        }
+      }} />
+      <Tab.Screen name="Category" component={CategoryScreen} options={{
+        tabBarIcon: ({ focused }) => {
+          return <MaterialCommunityIcons name="shoe-heel"
+          size={24}
+          color={focused ? THEME.secondaryColor : THEME.primaryColor} />
+        }
+      }} />
+      <Tab.Screen name="Cart" component={CartScreen} options={{
+        tabBarIcon: ({ focused }) => {
+          return <MaterialCommunityIcons name="cart-variant"
+          size={24}
+          color={focused ? THEME.secondaryColor : THEME.primaryColor} />
+        }
+      }} />
     </Tab.Navigator>
   );
 }

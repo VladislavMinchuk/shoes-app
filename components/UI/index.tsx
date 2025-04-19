@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { stylesVar } from '../../const';
+import { COLORS, THEME } from '../../const';
 
 export const Title = styled.Text`
     font-size: 24px;
@@ -9,16 +9,16 @@ export const Title = styled.Text`
 
 export const PrimaryButton = styled.TouchableOpacity`
     padding: 10px 20px;
-    background-color: ${stylesVar.color.yellow_600};
+    background-color: ${THEME.primaryColor};
 `;
 
 export const SecondaryButton = styled.TouchableOpacity`
     padding: 10px 20px;
-    background-color: ${stylesVar.color.cyan_800};
+    background-color: ${THEME.secondaryColor};
 `;
     
 export const WhiteButtonText = styled.Text`
-    color: ${stylesVar.color.white};
+    color: ${COLORS.white};
     font-size: 16px;
     text-align: center;
 `;
@@ -30,7 +30,7 @@ export const ScrollContainer = styled.ScrollView`
 
 export const BackgroundImage = styled.ImageBackground`
     flex: 1;
-    resize-mode: cover;
+    resize: cover;
     justify-content: center;
     align-items: center;
 `;
@@ -40,19 +40,23 @@ export const FullscreenImage = styled.Image`
     height: 100%;
 `;
 
-export const ProductImage = styled.Image`
-    width: 100%;
-    height: 150px;
-    margin-bottom: 10px;
-`;
+export const CartBtnStyled = styled.TouchableOpacity`
+    position: relative;
+    width: 25;
+    height: 25;
+    color: ${COLORS.yellow_900};
+`
 
-export const ProductPriceText = styled.Text`
-    font-size: 16px;
-    padding: 5px 0;
-`;
-
-export const ProductTitleText = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0 0 auto;
-`;
+export const CartBtnNnumber = styled.View`
+    position: absolute;
+    top: -10;
+    right: -10;
+    width: 20;
+    height: 20;
+    justify-content: center;
+    align-items: center;
+    background-color: ${THEME.secondaryColor};
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+`
