@@ -1,37 +1,24 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Dimensions, FlatList, View } from 'react-native';
+import { Dimensions, FlatList, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { RootStackParamList } from '../navigation/types';
-import { ScrollContainer } from '../components/UI';
+import { Container, ScrollContainer, SectionTitle } from '../components/UI';
 import ProductCard from '../components/ProductCard';
 import Fotoer from '../blocks/Footer';
+import HeroSection from '../blocks/HeroSection';
+import { THEME } from '../const';
+import CategorySetion from '../blocks/CategorySection';
 
-const screenHeight = Dimensions.get('window').height;
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Product'>;
 
-const HeroTouchable = styled.TouchableOpacity`
-  height: ${screenHeight - 80}px;
-`;
-
-const HeroImage = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SectionTitle = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin: 16px;
-`;
-
 const products = [
+  { id: '2', title: 'Новий товар 2', price: 12254, image: require('../assets/product-img-1.jpg') },
   { id: '4', title: 'Новий товар 4', price: 1255, image: require('../assets/product-img-3.jpg') },
   { id: '1', title: 'Новий товар 1 Новий товар Новий товар Новий товар 1', price: 980, image: require('../assets/hero-img.jpg') },
-  { id: '2', title: 'Новий товар 2', price: 12254, image: require('../assets/product-img-1.jpg') },
   { id: '3', title: 'Новий товар 3', price: 155, image: require('../assets/product-img-2.jpg') },
 ];
 
@@ -50,11 +37,13 @@ export default function HomeScreen() {
 ``
   return (
     <ScrollContainer>
-      <HeroTouchable onPress={handleHeroPress}>
-        <HeroImage source={require('../assets/hero-img.jpg')} resizeMode="cover" />
-      </HeroTouchable>
 
-      <SectionTitle>Нові товари</SectionTitle>
+      <HeroSection onPress={handleHeroPress} title='Main hero title'></HeroSection>
+
+      <Container style={{ alignItems: 'center', flexDirection: 'row' }}>
+        <MaterialIcons name="fiber-new" size={35} color={THEME.secondaryColor} />
+        <SectionTitle>Нові товари</SectionTitle>
+      </Container>
 
       <FlatList
         data={products}
@@ -64,6 +53,8 @@ export default function HomeScreen() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 16 }}
       />
+
+      <CategorySetion />
 
       <Fotoer></Fotoer>
     </ScrollContainer>

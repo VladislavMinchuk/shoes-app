@@ -1,5 +1,6 @@
 export const COLORS = {
     white: '#fff',
+    while_opacity: 'rgba(255,255,255, .8)',
     gray: '#111827',
     zinc_500: '#71717a',
     zinc_600: '#52525b',
@@ -16,6 +17,8 @@ export const COLORS = {
     yellow_700:'#a16207',
     yellow_800:'#854d0e',
     yellow_900:'#713f12',
+    yellow_opacity: 'rgba(204, 183, 48, .6)',
+    cyan_opacity: 'rgba(22, 78, 99, .6)',
     green_400:'#4ade80',
     green_500:'#22c55e',
     green_600:'#16a34a',
@@ -45,4 +48,6 @@ export const CARD_IMG_HEIGHT = {
 export const THEME = {
     primaryColor: COLORS.cyan_900,
     secondaryColor: COLORS.yellow_500,
+    secondaryColorOutline: COLORS.yellow_opacity,
+    primaryColorOutline: COLORS.cyan_opacity,
 }

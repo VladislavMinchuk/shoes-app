@@ -7,6 +7,18 @@ export const Title = styled.Text`
     color: #333;
 `;
 
+export const Container = styled.View`
+    padding: 15px 10px;
+`;
+
+export const SectionTitle = styled.Text`
+  color: ${THEME.primaryColor};
+  font-size: 20px;
+  font-weight: bold;
+  margin: 16px;
+`;
+
+
 export const PrimaryButton = styled.TouchableOpacity`
     padding: 10px 20px;
     background-color: ${THEME.primaryColor};
@@ -16,7 +28,7 @@ export const SecondaryButton = styled.TouchableOpacity`
     padding: 10px 20px;
     background-color: ${THEME.secondaryColor};
 `;
-    
+
 export const WhiteButtonText = styled.Text`
     color: ${COLORS.white};
     font-size: 16px;
