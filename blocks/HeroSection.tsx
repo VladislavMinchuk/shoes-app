@@ -31,7 +31,7 @@ const HeroImage = styled.ImageBackground`
 
 const ButtonOutline = styled.Text`
     position: absolute;
-    bottom: 150;
+    bottom: 120;
     padding: 10px 20px;
     background-color: ${THEME.primaryColorOutline};
     /* border: 1px solid ${THEME.secondaryColor};   */
@@ -43,7 +43,7 @@ const ButtonOutline = styled.Text`
 const HeroSection: React.FC<HeroSectionProps> = ({ onPress, title }) => {
     return (
         <HeroTouchable onPress={onPress}>
-            <HeroImage source={require('../assets/product-img-4.jpg')} resizeMode="cover">
+            <HeroImage source={require('../assets/product-img-9.jpg')} resizeMode="cover">
                 <HeroTitle>{ title } </HeroTitle>
                 <ButtonOutline>Переглянути</ButtonOutline>
             </HeroImage>
