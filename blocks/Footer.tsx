@@ -1,10 +1,10 @@
-import { Text } from 'react-native';
 import { FooterBlock } from '../components/UI/Blocks';
+import { ContactsSection } from './ContactsSection';
 
 export default function Fotoer() {
     return (
         <FooterBlock>
-            <Text>Контакти</Text>
+            <ContactsSection />
         </FooterBlock>
     );
 };

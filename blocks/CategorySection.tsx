@@ -7,7 +7,20 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { THEME } from '../const';
 type Props = NativeStackScreenProps<TabParamList, 'Category'>;
 
-const categories = ['Жіноче', 'Чоловіче', 'Дитяче'];
+const categories = [
+    {
+        title: 'Жіноче',
+        img: require('../assets/product-img-5.jpg'),
+    },
+    {
+        title: 'Чоловіче',
+        img: require('../assets/product-img-6.jpg'),
+    },
+    {
+        title: 'Дитяче',
+        img: require('../assets/product-img-4.jpg'),
+    }
+];
 
 export const CategorySetion = () => {
   return (
@@ -18,10 +31,10 @@ export const CategorySetion = () => {
         </Container>
         <FlatList
           data={categories}
-          keyExtractor={(item) => item}
+          keyExtractor={({ title, img }) => title}
           scrollEnabled={false}
-          renderItem={({ item }) => (
-            <CategoryCard title={item} onPress={() => {}} />
+          renderItem={({item}) => (
+            <CategoryCard title={item.title} image={item.img} onPress={() => {}} />
           )}
         />
     </Container>

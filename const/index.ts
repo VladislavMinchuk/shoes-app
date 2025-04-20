@@ -33,17 +33,26 @@ export const COLORS = {
     cyan_900:'#164e63',
 };
 
-export const CARD_WIDTHS = {
-    sm: '140px',
-    md: '170px',
-    lg: '200px',
-};
-
 export const CARD_IMG_HEIGHT = {
     sm: '150px',
-    md: '150px',
-    lg: '250px',
+    md: '250px',
+    lg: '300px',
 };
+
+export const CARD_SIZE = {
+    sm: {
+        width: '140px',
+        height: '250px',
+    },
+    md: {
+        width: '200px',
+        height: '380px',
+    },
+    lg: {
+        width: '280px',
+        height: '420px',
+    },
+}
 
 export const THEME = {
     primaryColor: COLORS.cyan_900,

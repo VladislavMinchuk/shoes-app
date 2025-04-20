@@ -1,23 +1,27 @@
 import styled from 'styled-components/native';
 import { PrimaryButton } from "./index";
-import { CARD_IMG_HEIGHT, CARD_WIDTHS, COLORS } from '../../const';
-import { WidthCardType } from '../ProductCard';
+import { CARD_IMG_HEIGHT, CARD_SIZE, COLORS, THEME } from '../../const';
+import { SizeCardType } from '../ProductCard';
 
 interface IProductCardStyledProps {
-    widthCard: WidthCardType
+    cardSize: SizeCardType
 };
 
 interface IProductImgStyledProps {
-    heightCard: WidthCardType
+    cardSize: SizeCardType
 };
 
 export const ProductCardStyled = styled.View<IProductCardStyledProps>`
-    width: ${({ widthCard }: IProductCardStyledProps) => CARD_WIDTHS[widthCard]};
+    width: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].width};
+    height: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].height};
     margin: 0 0 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: ${THEME.primaryColor};
+    padding-bottom: 20px;
 `;
     
 export const ProductImage = styled.Image<IProductImgStyledProps>`
-    height: ${({ heightCard }: IProductImgStyledProps) => CARD_IMG_HEIGHT[heightCard]};
+    height: ${({ cardSize }: IProductImgStyledProps) => CARD_IMG_HEIGHT[cardSize]};
     width: 100%;
     margin-bottom: 10px;
 `;
@@ -37,7 +41,7 @@ export const ProductTitleText = styled.Text`
 
 export const ProductAddBtnTxt = styled.Text`
     font-size: 26px;
-    color: ${COLORS.white}
+    color: ${COLORS.white};
 `;
 
 export const ProductAddBtn = styled(PrimaryButton)`
@@ -54,4 +58,5 @@ export const ProductCardFooter = styled.View`
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    margin-top: auto;
 `;
