@@ -1,4 +1,4 @@
-import { HeaderBlock } from '../components/UI/Blocks';
+import { HeaderBlock } from '../components/UI';
 import CartBtn from '../components/CartBtn';
 import React, {  } from 'react';
 import { Text } from 'react-native';

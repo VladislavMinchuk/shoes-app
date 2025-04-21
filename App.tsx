@@ -5,7 +5,7 @@ import { store } from "./store/store";
 import RootNavigator from "./navigation/RootNavigator";
 import Layout from "./layouts";
 import { useLayoutHeaderAnimation } from "./hooks/useLayoutHeaderAnimation";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as SplashScreen from 'expo-splash-screen';
 import {
   useFonts,
@@ -13,6 +13,7 @@ import {
   RobotoSerif_400Regular,
   RobotoSerif_700Bold
 } from "@expo-google-fonts/roboto-serif";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 /// <reference types="nativewind/types" />
 
 SplashScreen.preventAutoHideAsync();
@@ -35,11 +36,13 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
           <NavigationContainer>
-            <Layout>
+            <SafeAreaView style={{ flex: 1, position: 'relative', backgroundColor: '#fff' }} edges={['top']}>
               <RootNavigator />
-            </Layout>
+            </SafeAreaView>
           </NavigationContainer>
+        </GestureHandlerRootView>
       </Provider>
     </SafeAreaProvider>
   );

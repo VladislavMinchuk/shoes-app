@@ -59,4 +59,7 @@ export const THEME = {
     secondaryColor: COLORS.yellow_500,
     secondaryColorOutline: COLORS.yellow_opacity,
     primaryColorOutline: COLORS.cyan_opacity,
-}
+};
+
+export const stikyFooterHeight = 100;
+export const stikyHeaderHeight = 60;

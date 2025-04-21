@@ -6,6 +6,7 @@ import CartScreen from '../screens/CartScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { THEME } from '../const';
+import { withLayout } from '../components/withLayout';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 const screenOptions = {
@@ -21,21 +22,21 @@ const screenOptions = {
 export default function TabNavigator() {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{
+      <Tab.Screen name="Home" component={withLayout(HomeScreen)} options={{
         tabBarIcon: ({ focused }) => {
           return <Ionicons name='home'
           size={24}
           color={focused ? THEME.secondaryColor : THEME.primaryColor } />
         }
       }} />
-      <Tab.Screen name="Category" component={CategoryScreen} options={{
+      <Tab.Screen name="Category" component={withLayout(CategoryScreen)} options={{
         tabBarIcon: ({ focused }) => {
           return <MaterialCommunityIcons name="shoe-heel"
           size={24}
           color={focused ? THEME.secondaryColor : THEME.primaryColor} />
         }
       }} />
-      <Tab.Screen name="Cart" component={CartScreen} options={{
+      <Tab.Screen name="Cart" component={withLayout(CartScreen)} options={{
         tabBarIcon: ({ focused }) => {
           return <MaterialCommunityIcons name="cart-variant"
           size={24}

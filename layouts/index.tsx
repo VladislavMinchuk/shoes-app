@@ -3,21 +3,23 @@ import React, { ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Header from '../blocks/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { stikyHeaderHeight } from '../const';
+import { useRoute } from '@react-navigation/native';
 
 type Props = {
+  isHome?: boolean;
   children: ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, isHome }: Props) => {
+  
   return (
-    <SafeAreaView style={{ flex: 1, position: 'relative', backgroundColor: '#fff' }} edges={['top']}>
-      <View style={styles.container}>
+      <View style={ styles.container }>
         <Header/>
-        <View style={styles.content}>
+        <View style={{...styles.content, marginTop: isHome ? 0 : 60}}>
           {children}
         </View>
       </View>
-    </SafeAreaView>
   );
 };
 
