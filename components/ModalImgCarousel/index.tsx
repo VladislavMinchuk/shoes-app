@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Dimensions, Image, ScrollView } from 'react-native';
+import { Modal, Dimensions } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import styled from 'styled-components/native';
 import { AntDesign } from '@expo/vector-icons';
+import { CloseButton } from './styles';
 
 interface ModalImgCarouselProps {
   visible: boolean;
@@ -41,10 +41,3 @@ const ModalImgCarousel: React.FC<ModalImgCarouselProps> = ({
 };
 
 export default ModalImgCarousel;
-
-const CloseButton = styled.TouchableOpacity`
-  position: absolute;
-  top: 40px;
-  right: 20px;
-  z-index: 10;
-`;

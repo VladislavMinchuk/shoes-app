@@ -1,9 +1,9 @@
-import { HeaderBlock } from '../components/UI';
-import CartBtn from '../components/CartBtn';
+import { HeaderBlock } from './styles';
+import CartBtn from '../../components/CartBtn';
 import React, {  } from 'react';
 import { Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import SearchBtn from '../components/SearchBtn';
+import SearchBtn from '../../components/SearchBtn';
 
 const Header: React.FC = () => {
     const insets = useSafeAreaInsets();

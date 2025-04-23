@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, Dimensions, Image, FlatList, Modal } from 'react-native';
-import styled from 'styled-components/native';
+import { View, ScrollView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { PrimaryButton, StickyFooter } from '../components/UI';
-import { COLORS, stikyFooterHeight, stikyHeaderHeight, THEME } from '../const';
-import ModalImgCarousel from '../components/ModalImgCarousel';
-import SizeList from '../components/SizeList';
-import { PoductLabel } from '../components/UI/ProductScreen';
+import { StickyFooter, Title } from '../../components/UI';
+import { COLORS, stikyFooterHeight } from '../../const';
+import ModalImgCarousel from '../../components/ModalImgCarousel';
+import SizeList from '../../components/SizeList';
+import { PoductLabel } from '../../components/UI';
+import { CarouselContainer, HeartIcon, Content, Price, Status, ColorList, ColorDot, Description, AddToCartButton, ButtonText } from './styles';
 
 const images = [
-  require('../assets/product-img-4.jpg'),
-  require('../assets/product-img-5.jpg'),
-  require('../assets/product-img-6.jpg'),
+  require('../../assets/product-img-4.jpg'),
+  require('../../assets/product-img-5.jpg'),
+  require('../../assets/product-img-6.jpg'),
 ];
 
 const colors = [`${COLORS.cyan_500}`, `${COLORS.green_700}`, `${COLORS.red_500}`];
@@ -98,68 +98,3 @@ const ProductScreen = () => {
 };
 
 export default ProductScreen;
-
-const CarouselContainer = styled.View`
-  position: relative;
-`;
-
-const HeartIcon = styled.TouchableOpacity`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 8px;
-  border-radius: 20px;
-`;
-
-const Content = styled.View`
-  padding: 16px;
-`;
-
-const Title = styled.Text`
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 4px;
-`;
-
-const Price = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
-  color: ${THEME.secondaryColor};
-  margin-bottom: 6px;
-`;
-
-const Status = styled.Text<{ isAvailable: boolean }>`
-  color: ${(props: { isAvailable: boolean }) => (props.isAvailable ? 'green' : 'red')};
-  font-weight: 500;
-  margin-bottom: 16px;
-`;
-
-const ColorList = styled.ScrollView`
-  flex-direction: row;
-  margin-bottom: 20px;
-`;
-
-const ColorDot = styled.View`
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-`;
-
-const Description = styled.Text`
-  font-size: 15px;
-  color: #444;
-  line-height: 20px;
-`;
-
-const AddToCartButton = styled(PrimaryButton)`
-  padding: 14px;
-  align-items: center;
-`;
-
-const ButtonText = styled.Text`
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-`;

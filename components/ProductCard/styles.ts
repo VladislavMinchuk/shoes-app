@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { PrimaryButton } from "./index";
+import { PrimaryButton } from "../UI/index";
 import { CARD_IMG_HEIGHT, CARD_SIZE, COLORS, THEME } from '../../const';
 import { SizeCardType } from '../ProductCard';
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { CartBtnNnumber, CartBtnStyled } from "./UI";
+import { CartBtnNnumber, CartBtnStyled } from "../UI";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { THEME } from "../const";
+import { THEME } from "../../const";
 import { Text } from 'react-native';
 
 

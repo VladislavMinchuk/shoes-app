@@ -1,7 +1,7 @@
 import { TouchableOpacity } from 'react-native';
 import React from "react";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { THEME } from '../const';
+import { THEME } from '../../const';
 
 const SearchBtn: React.FC = () => {
     return (

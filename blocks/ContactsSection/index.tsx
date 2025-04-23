@@ -1,8 +1,7 @@
 import React from 'react';
 import { Linking, Platform, View } from 'react-native';
-import styled from 'styled-components/native';
-import { Container, PrimaryButton } from '../components/UI';
-import { THEME } from '../const';
+import { Container, PrimaryButton } from '../../components/UI';
+import { Label, MapButtonText, Row, Title, Value } from './styles';
 
 export const ContactsSection = () => {
   const phone = '+380501234567';
@@ -49,38 +48,3 @@ export const ContactsSection = () => {
     </Container>
   );
 };
-
-// const Container = styled.View`
-//   padding: 20px;
-//   background-color: #fff;
-//   border-radius: 12px;
-//   gap: 12px;
-// `;
-
-const Title = styled.Text`
-    width: 100%;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 10px;
-`;
-
-const Row = styled.TouchableOpacity`
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-`;
-
-const Label = styled.Text`
-    font-weight: 600;
-    margin-right: 6px;
-`;
-
-const Value = styled.Text`
-    color: ${THEME.primaryColor};
-    text-decoration: underline;
-`;
-
-const MapButtonText = styled.Text`
-  color: white;
-  font-weight: 600;
-`;

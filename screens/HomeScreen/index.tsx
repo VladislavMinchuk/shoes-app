@@ -1,25 +1,24 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { Dimensions, FlatList, View, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { RootStackParamList } from '../navigation/types';
-import { Container, ScrollContainer, SectionTitle } from '../components/UI';
-import ProductCard from '../components/ProductCard';
-import Fotoer from '../blocks/Footer';
-import HeroSection from '../blocks/HeroSection';
-import { THEME } from '../const';
-import CategorySetion from '../blocks/CategorySection';
+import { RootStackParamList } from '../../navigation/types';
+import { Container, ScrollContainer, SectionTitle } from '../../components/UI';
+import ProductCard from '../../components/ProductCard';
+import Fotoer from '../../blocks/Footer';
+import HeroSection from '../../blocks/HeroSection';
+import { THEME } from '../../const';
+import CategorySetion from '../../blocks/CategorySection';
 
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Product'>;
 
 const products = [
-  { id: '2', title: 'Новий товар 2', price: 12254, image: require('../assets/product-img-1.jpg') },
-  { id: '4', title: 'Новий товар 4', price: 1255, image: require('../assets/product-img-3.jpg') },
-  { id: '1', title: 'Новий товар 1 Новий товар Новий товар Новий товар товар товар 1', price: 980, image: require('../assets/hero-img.jpg') },
-  { id: '3', title: 'Новий товар 3', price: 155, image: require('../assets/product-img-2.jpg') },
+  { id: '2', title: 'Новий товар 2', price: 12254, image: require('../../assets/product-img-1.jpg') },
+  { id: '4', title: 'Новий товар 4', price: 1255, image: require('../../assets/product-img-3.jpg') },
+  { id: '1', title: 'Новий товар 1 Новий товар Новий товар Новий товар товар товар 1', price: 980, image: require('../../assets/hero-img.jpg') },
+  { id: '3', title: 'Новий товар 3', price: 155, image: require('../../assets/product-img-2.jpg') },
 ];
 
 export default function HomeScreen() {

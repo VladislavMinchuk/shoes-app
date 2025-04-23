@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { IProduct } from '../types';
+import { IProduct } from '../../types';
 import { useDispatch } from 'react-redux';
-import { ProductAddBtn, ProductAddBtnTxt, ProductCardFooter, ProductCardStyled, ProductImage, ProductPriceText, ProductTitleText } from './UI/ProductCart';
-import { CARD_IMG_HEIGHT, CARD_SIZE } from '../const';
-import { addToCart } from '../store/cartSlice';
+import { ProductAddBtn, ProductAddBtnTxt, ProductCardFooter, ProductCardStyled, ProductImage, ProductPriceText, ProductTitleText } from './styles';
+import { CARD_IMG_HEIGHT, CARD_SIZE } from '../../const';
+import { addToCart } from '../../store/cartSlice';
 
 export interface IProductCardProps {
   product: IProduct;

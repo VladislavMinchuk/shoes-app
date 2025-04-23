@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
-import { removeFromCart, clearCart } from '../store/cartSlice';
+import { RootState } from '../../store/store';
+import { removeFromCart, clearCart } from '../../store/cartSlice';
 
 export default function CartScreen() {
   const items = useSelector((state: RootState) => state.cart.items);

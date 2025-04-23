@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductScreen from "../screens/ProductScreen";
 import type { RootStackParamList } from './types';
 import TabNavigator from "./TabNavigator";
-import { withLayout } from "../components/withLayout";
+import { withLayout } from "../components/WithLayout";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

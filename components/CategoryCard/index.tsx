@@ -1,24 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { LinearGradient } from "expo-linear-gradient";
-import styled from 'styled-components/native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Gradient, ImageWrapper } from './styles';
 
 interface Props {
   title: string;
   image?: string;
   onPress?: () => void;
 };
-
-const Gradient = styled(LinearGradient)`
-  flex: 1;
-  justify-content: center;
-  padding: 20px 20px 20px 16px;
-`;
-
-const ImageWrapper = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-`;
 
 const CategoryCard = ({ title, image, onPress }: Props) => {
   

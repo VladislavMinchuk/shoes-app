@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { COLORS, stikyFooterHeight, stikyHeaderHeight, THEME } from '../../const';
+import { COLORS, stikyFooterHeight, THEME } from '../../const';
 
 export const Title = styled.Text`
     font-size: 24px;
@@ -37,7 +37,6 @@ export const WhiteButtonText = styled.Text`
 export const ScrollContainer = styled.ScrollView`
     flex: 1;
     background-color: #fff;
-    margin-top: -100px;
 `;
 
 export const BackgroundImage = styled.ImageBackground`
@@ -84,23 +83,8 @@ export const StickyFooter = styled.View`
     height: ${stikyFooterHeight};
 `;
 
-export const HeaderBlock = styled.View`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    padding: 16px;
-    background-color: ${COLORS.while_opacity};
-    height: ${stikyHeaderHeight};
-    z-index: 10;
-`;
-
-export const FooterBlock = styled.View`
-    padding: 16px;
-    background-color: ${COLORS.white};
-    border-top-width: 2px;
-    border-top-color: ${THEME.secondaryColor};
+export const PoductLabel = styled.Text`
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
 `;

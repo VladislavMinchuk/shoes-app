@@ -6,7 +6,7 @@ import CartScreen from '../screens/CartScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { THEME } from '../const';
-import { withLayout } from '../components/withLayout';
+import { withLayout } from '../components/WithLayout';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 const screenOptions = {

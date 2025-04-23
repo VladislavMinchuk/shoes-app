@@ -1,5 +1,5 @@
-import { FooterBlock } from '../components/UI';
-import { ContactsSection } from './ContactsSection';
+import { FooterBlock } from './styles';
+import { ContactsSection } from '../ContactsSection';
 
 export default function Fotoer() {
     return (
