@@ -1,20 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { CartItem, CartItemPayload } from './interfaces';
 
-export interface CartItem {
-  id: string;
-  productId: string;
-  price: number;
-  quantity: number;
-}
-
-interface CartState {
-  items: CartItem[];
-}
-
-const initialState: CartState = {
-  items: [],
-};
+const initialState: CartItem[] =  [];
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -22,19 +10,19 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (
       state,
-      action: PayloadAction<{ productId: string; price: number; quantity: number }>
+      action: PayloadAction<CartItemPayload>
     ) => {
       const { productId, price, quantity } = action.payload;
 
       // find by productId
-      const existingItem = state.items.find(
+      const existingItem = state.find(
         item => item.productId === productId
       );
 
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
-        state.items.push({
+        state.push({
           id: uuidv4(), // uniq ID
           productId,
           price,
@@ -43,19 +31,19 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id);
+      state = state.filter(item => item.id !== action.payload.id);
     },
     updateQuantity: (
       state,
       action: PayloadAction<{ id: string; quantity: number }>
     ) => {
-      const item = state.items.find(i => i.id === action.payload.id);
+      const item = state.find(i => i.id === action.payload.id);
       if (item) {
         item.quantity = action.payload.quantity;
       }
     },
     clearCart: state => {
-      state.items = [];
+      state = [];
     },
   },
 });

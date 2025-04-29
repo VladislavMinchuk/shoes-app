@@ -1,32 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product, RootState } from './interfaces';
 
-interface ProductState {
-  products: Product[];
-}
-
-const initialState: ProductState = {
-  products: [],
-};
+const initialState: Product[] = [];
 
 export const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
     setProducts: (state, action: PayloadAction<Product[]>) => {
-      state.products = action.payload;
+      return action.payload;
     },
     addProduct: (state, action: PayloadAction<Product>) => {
-      state.products.push(action.payload);
+      state.push(action.payload);
     },
     updateProduct: (state, action: PayloadAction<Product>) => {
-      const index = state.products.findIndex(p => p.id === action.payload.id);
+      const index = state.findIndex(p => p.id === action.payload.id);
       if (index !== -1) {
-        state.products[index] = action.payload;
+        state[index] = action.payload;
       }
     },
     removeProduct: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter(p => p.id !== action.payload);
+      return state.filter(p => p.id !== action.payload);
     },
   },
 });

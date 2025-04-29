@@ -43,6 +43,13 @@ export interface CartItem {
     quantity: number;
 }
   
+  
+export interface CartItemPayload {
+    productId: string;
+    price: number;
+    quantity: number;
+}
+  
 export interface CartState {
     items: CartItem[];
 }
@@ -62,8 +69,8 @@ export interface BrandState {
   
 export interface RootState {
     products: Product[];
-    categories: Category[];
-    brands: Brand[];
+    categories?: Category[];
+    brands?: Brand[];
     cart: CartItem[];
 }
   

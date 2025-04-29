@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,18 +10,25 @@ import Fotoer from '../../blocks/Footer';
 import HeroSection from '../../blocks/HeroSection';
 import { THEME } from '../../const';
 import CategorySetion from '../../blocks/CategorySection';
+import { selectAllProducts, setProducts } from '../../store/productSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import type { RootState } from '../../store/store';
+import mockStore from '../../store/mockStore';
 
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Product'>;
 
-const products = [
-  { id: '2', title: 'Новий товар 2', price: 12254, image: require('../../assets/product-img-1.jpg') },
-  { id: '4', title: 'Новий товар 4', price: 1255, image: require('../../assets/product-img-3.jpg') },
-  { id: '1', title: 'Новий товар 1 Новий товар Новий товар Новий товар товар товар 1', price: 980, image: require('../../assets/hero-img.jpg') },
-  { id: '3', title: 'Новий товар 3', price: 155, image: require('../../assets/product-img-2.jpg') },
-];
+// const products = [
+//   { id: '2', title: 'Новий товар 2', price: 12254, image: require('../../assets/product-img-1.jpg') },
+//   { id: '4', title: 'Новий товар 4', price: 1255, image: require('../../assets/product-img-3.jpg') },
+//   { id: '1', title: 'Новий товар 1 Новий товар Новий товар Новий товар товар товар 1', price: 980, image: require('../../assets/hero-img.jpg') },
+//   { id: '3', title: 'Новий товар 3', price: 155, image: require('../../assets/product-img-2.jpg') },
+// ];
+
 
 export default function HomeScreen() {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state: RootState) => state.products); // mock data
   const navigation = useNavigation<NavigationProp>();
 
   const handleHeroPress = () => {
@@ -33,7 +40,10 @@ export default function HomeScreen() {
       <ProductCard cardSize='md' product={item} onPress={() => navigation.navigate('Product', { productId: item.id })} />
     </View>
   );
-``
+
+  useEffect(() => {
+    dispatch(setProducts(mockStore.products));
+  }, [])
   return (
     <ScrollContainer>
 
