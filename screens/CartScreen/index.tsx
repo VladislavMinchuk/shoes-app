@@ -4,7 +4,7 @@ import { RootState } from '../../store/store';
 import { removeFromCart, clearCart } from '../../store/cartSlice';
 
 export default function CartScreen() {
-  const items = useSelector((state: RootState) => state.cart.items);
+  const items = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   return (
@@ -14,8 +14,8 @@ export default function CartScreen() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text>{item.title} x{item.quantity}</Text>
-            <Button title="Видалити" onPress={() => dispatch(removeFromCart(item.id))} />
+            <Text>{item.productId} x{item.quantity}</Text>
+            <Button title="Видалити" onPress={() => dispatch(removeFromCart({ id: item.id }))} />
           </View>
         )}
       />

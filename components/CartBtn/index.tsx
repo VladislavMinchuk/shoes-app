@@ -12,7 +12,7 @@ export type CartBtnProps = {
 const CartBtn: React.FC<CartBtnProps> = ({ quantity }) => {
     return (
         <CartBtnStyled>
-            <CartBtnNnumber><Text style={{ color: 'white' }}>{quantity}</Text></CartBtnNnumber>
+            { !!quantity && <CartBtnNnumber><Text style={{ color: 'white' }}>{quantity}</Text></CartBtnNnumber>}
             <MaterialCommunityIcons name="cart-variant" size={24} color={THEME.primaryColor} />
         </CartBtnStyled>
     );

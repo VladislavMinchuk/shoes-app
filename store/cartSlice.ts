@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { CartItem, CartItemPayload } from './interfaces';
+import { CartItem, CartItemPayload, RootState } from './interfaces';
 
 const initialState: CartItem[] =  [];
 
@@ -31,7 +32,7 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
-      state = state.filter(item => item.id !== action.payload.id);
+      return state.filter(item => item.id !== action.payload.id);
     },
     updateQuantity: (
       state,
@@ -43,10 +44,12 @@ export const cartSlice = createSlice({
       }
     },
     clearCart: state => {
-      state = [];
+      return [];
     },
   },
 });
+
+export const selectCartLength = (state: RootState) => state.cart.length;
 
 export const { addToCart, removeFromCart, updateQuantity, clearCart } =
   cartSlice.actions;
