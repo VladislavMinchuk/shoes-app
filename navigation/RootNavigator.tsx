@@ -14,4 +14,4 @@ export default function RootNavigator() {
       <Stack.Screen name="Product" component={withLayout(ProductScreen)} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
-}
+};

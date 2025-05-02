@@ -9,7 +9,7 @@ export function withLayout<P extends object>(Component: React.ComponentType<P>) 
     const isHome = route.name === 'Home';
 
     return (
-      <Layout isHome={isHome}>
+      <Layout isHome={isHome} >
         <Component {...props} />
       </Layout>
     );

@@ -6,12 +6,13 @@ import { Text } from 'react-native';
 
 
 export type CartBtnProps = {
-    quantity?: string | number
+    quantity?: string | number,
+    onCartPress?: () => void,
 };
 
-const CartBtn: React.FC<CartBtnProps> = ({ quantity }) => {
+const CartBtn: React.FC<CartBtnProps> = ({ quantity, onCartPress }) => {
     return (
-        <CartBtnStyled>
+        <CartBtnStyled onPress={onCartPress}>
             { !!quantity && <CartBtnNnumber><Text style={{ color: 'white' }}>{quantity}</Text></CartBtnNnumber>}
             <MaterialCommunityIcons name="cart-variant" size={24} color={THEME.primaryColor} />
         </CartBtnStyled>

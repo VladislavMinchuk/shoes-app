@@ -7,9 +7,6 @@ import CategoryScreen from '../screens/CategoryScreen';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { THEME } from '../const';
 import { withLayout } from '../components/WithLayout';
-import CartBtn from '../components/CartBtn';
-import { selectCartLength } from '../store/cartSlice';
-import { useAppSelector } from '../store/hooks';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 const screenOptions = {
@@ -23,8 +20,6 @@ const screenOptions = {
 };
 
 export default function TabNavigator() {
-  const cartLength = useAppSelector(selectCartLength); // mock data
-  
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={withLayout(HomeScreen)} options={{
@@ -41,17 +36,13 @@ export default function TabNavigator() {
           color={focused ? THEME.secondaryColor : THEME.primaryColor} />
         }
       }} />
-      {/* <Tab.Screen name="Cart" component={withLayout(CartScreen)} options={{
+      <Tab.Screen name="Cart" component={withLayout(CartScreen)} options={{
         tabBarIcon: ({ focused }) => {
           return <MaterialCommunityIcons name="cart-variant"
           size={24}
           color={focused ? THEME.secondaryColor : THEME.primaryColor} />
         }
-      }} /> */}
-      <Tab.Screen name="Cart" component={withLayout(CartScreen)} options={{
-        tabBarIcon: ({ focused }) => {
-          return <CartBtn quantity={cartLength} /> } }}
-      />
+      }} />
     </Tab.Navigator>
   );
 }

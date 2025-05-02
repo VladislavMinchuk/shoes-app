@@ -5,6 +5,6 @@ export type TabParamList  = {
 };
 
 export type RootStackParamList = {
-    Tabs: TabParamList;
+    Tabs: { screen?: keyof TabParamList };
     Product: { productId: string };
 };
