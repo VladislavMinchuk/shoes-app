@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
       state,
       action: PayloadAction<CartItemPayload>
     ) => {
-      const { productId, price, quantity } = action.payload;
+      const { productId, productName, productPrice, productSize, price, quantity } = action.payload;
 
       // find by productId
       const existingItem = state.find(
@@ -26,6 +26,9 @@ export const cartSlice = createSlice({
         state.push({
           id: uuidv4(), // uniq ID
           productId,
+          productName,
+          productSize,
+          productPrice,
           price,
           quantity,
         });

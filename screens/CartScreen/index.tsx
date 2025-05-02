@@ -2,6 +2,7 @@ import { View, Text, FlatList, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { removeFromCart, clearCart } from '../../store/cartSlice';
+import CartItem from '../../components/CartItem';
 
 export default function CartScreen() {
   const items = useSelector((state: RootState) => state.cart);
@@ -14,7 +15,7 @@ export default function CartScreen() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text>{item.productId} x{item.quantity}</Text>
+            <CartItem { ...item } ></CartItem>
             <Button title="Видалити" onPress={() => dispatch(removeFromCart({ id: item.id }))} />
           </View>
         )}

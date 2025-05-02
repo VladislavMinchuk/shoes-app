@@ -20,6 +20,9 @@ const ProductCard = ({ product, cardSize = 'md', onPress }: IProductCardProps) =
   const dispatch = useDispatch();
   const cartItem: CartItemPayload = {
     productId: product.id,
+    productName: product.name,
+    productPrice: product.price,
+    productSize: product.sizes[0].size,
     price: product.price,
     quantity: 1
   };

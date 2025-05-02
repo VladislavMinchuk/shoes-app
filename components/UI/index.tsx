@@ -12,10 +12,10 @@ export const Container = styled.View`
 `;
 
 export const SectionTitle = styled.Text`
-  color: ${THEME.primaryColor};
-  font-size: 20px;
-  font-weight: bold;
-  margin: 16px;
+    color: ${THEME.primaryColor};
+    font-size: 20px;
+    font-weight: bold;
+    margin: 16px;
 `;
 
 export const PrimaryButton = styled.TouchableOpacity`
@@ -87,4 +87,8 @@ export const PoductLabel = styled.Text`
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
+`;
+
+export const WhiteText = styled.Text`
+    color: ${COLORS.white};
 `;

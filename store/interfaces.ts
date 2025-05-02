@@ -10,7 +10,14 @@ export interface Product {
     images: string[];
     colors: ColorVariant[];
     sizes: SizeVariant[];
-}
+};
+
+export interface ProductShort {
+    id: string;
+    name: string;
+    price: number;
+    size: SizeVariant;
+};
   
 export interface ColorVariant {
     id: string;
@@ -39,13 +46,19 @@ export interface Brand {
 export interface CartItem {
     id: string;
     productId: string;
+    productName: string;
+    productSize: string | number;
+    productPrice: string | number;
     price: number;
     quantity: number;
 }
-  
-  
+
+
 export interface CartItemPayload {
     productId: string;
+    productName: string;
+    productSize: string | number;
+    productPrice: string | number;
     price: number;
     quantity: number;
 }
