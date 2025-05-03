@@ -1,12 +1,24 @@
-import { View, Text, FlatList, Button } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { removeFromCart, clearCart } from '../../store/cartSlice';
+import { removeFromCart, clearCart, updateQuantity } from '../../store/cartSlice';
 import CartItem from '../../components/CartItem';
+import { useAppDispatch } from '../../store/hooks';
+import { parseToNum } from '../../helpers';
+import { THEME } from '../../const';
 
 export default function CartScreen() {
+  const dispatch = useAppDispatch();
   const items = useSelector((state: RootState) => state.cart);
-  const dispatch = useDispatch();
+  const incQuantity = (id: string, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity: parseToNum(quantity) + 1 }));
+  };
+  const decQuantity = (id: string, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity: parseToNum(quantity) - 1 }));
+  };
+  const removeCartItem = (id: string) => {
+    dispatch(removeFromCart({ id }))
+  };
 
   return (
     <View>
@@ -14,13 +26,21 @@ export default function CartScreen() {
         data={items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View>
-            <CartItem { ...item } ></CartItem>
-            <Button title="Видалити" onPress={() => dispatch(removeFromCart({ id: item.id }))} />
-          </View>
+          <CartItem
+            item={item}
+            onCartDecrease={decQuantity}
+            onCartIncrease={incQuantity}
+            onCartRemove={removeCartItem}
+          ></CartItem>
         )}
       />
-      <Button title="Очистити кошик" onPress={() => dispatch(clearCart())} />
+
+      { items.length ?
+        <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => dispatch(clearCart())}>
+          <Text style={{ fontSize: 18, color: THEME.secondaryColor }}>Очистити кошик</Text>
+        </TouchableOpacity> :
+        <Text>Empty cart</Text>
+      }
     </View>
   );
 }

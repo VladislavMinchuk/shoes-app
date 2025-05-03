@@ -7,6 +7,8 @@ import ModalImgCarousel from '../../components/ModalImgCarousel';
 import SizeList from '../../components/SizeList';
 import { PoductLabel } from '../../components/UI';
 import { CarouselContainer, HeartIcon, Content, Price, Status, ColorList, ColorDot, Description, AddToCartButton, ButtonText } from './styles';
+import { useAppDispatch } from '../../store/hooks';
+import { addToCart } from '../../store/cartSlice';
 
 const images = [
   require('../../assets/product-img-4.jpg'),
@@ -19,6 +21,7 @@ const sizes = [35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
 const disabledSizes = [37, 40, 45];
 
 const ProductScreen = () => {
+  const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
   const [liked, setLiked] = useState(false);
   const [showFullscreenCarousel, setShowFullscreenCarousel] = useState(false);
@@ -29,6 +32,10 @@ const ProductScreen = () => {
   const screenWidth = Dimensions.get('window').width;
 
   const zoomImages = images.map((img) => ({ url: Image.resolveAssetSource(img).uri }));
+
+  const addToCartHandler = () => {
+    // dispatch(addToCart())
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -89,7 +96,7 @@ const ProductScreen = () => {
       />
 
       <StickyFooter>
-        <AddToCartButton>
+        <AddToCartButton onPress={addToCartHandler}>
           <ButtonText>До кошику</ButtonText>
         </AddToCartButton>
       </StickyFooter>
