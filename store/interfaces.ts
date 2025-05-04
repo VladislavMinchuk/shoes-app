@@ -49,7 +49,7 @@ export interface CartItem {
     productName: string;
     productSize: string | number;
     productPrice: string | number;
-    price: number;
+    totalPrice: number;
     quantity: number;
 }
 
@@ -59,7 +59,6 @@ export interface CartItemPayload {
     productName: string;
     productSize: string | number;
     productPrice: string | number;
-    price: number;
     quantity: number;
 }
   

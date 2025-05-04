@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { CartItem, CartItemPayload, RootState } from './interfaces';
+import { parseToNum } from '../helpers';
 
 const initialState: CartItem[] =  [];
 
@@ -13,7 +14,8 @@ export const cartSlice = createSlice({
       state,
       action: PayloadAction<CartItemPayload>
     ) => {
-      const { productId, productName, productPrice, productSize, price, quantity } = action.payload;
+      const { productId, productName, productPrice, productSize, quantity } = action.payload;
+      const totalPrice = parseToNum(productPrice) * parseToNum(quantity);
 
       // find by productId
       const existingItem = state.find(
@@ -29,7 +31,7 @@ export const cartSlice = createSlice({
           productName,
           productSize,
           productPrice,
-          price,
+          totalPrice,
           quantity,
         });
       }
@@ -44,6 +46,7 @@ export const cartSlice = createSlice({
       const item = state.find(i => i.id === action.payload.id);
       if (item) {
         item.quantity = action.payload.quantity;
+        item.totalPrice = parseToNum(item.productPrice) * parseToNum(action.payload.quantity);
       }
     },
     clearCart: state => {
@@ -53,6 +56,9 @@ export const cartSlice = createSlice({
 });
 
 export const selectCartLength = (state: RootState) => state.cart.length;
+export const selectCartTotal = (state: RootState) => state.cart.reduce((prev, curr) => {
+  return curr.totalPrice + prev;
+}, 0);
 
 export const { addToCart, removeFromCart, updateQuantity, clearCart } =
   cartSlice.actions;

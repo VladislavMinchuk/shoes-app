@@ -92,3 +92,10 @@ export const PoductLabel = styled.Text`
 export const WhiteText = styled.Text`
     color: ${COLORS.white};
 `;
+
+export const UnderlineDecor = styled.View`
+    width: 100%;
+    height: 1px;
+    background-color: ${THEME.secondaryColor};
+    margin: 5px 0;
+`;

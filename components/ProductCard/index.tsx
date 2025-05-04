@@ -23,7 +23,6 @@ const ProductCard = ({ product, cardSize = 'md', onPress }: IProductCardProps) =
     productName: product.name,
     productPrice: product.price,
     productSize: product.sizes[0].size,
-    price: product.price,
     quantity: 1
   };
   const productImg = product.images[0];

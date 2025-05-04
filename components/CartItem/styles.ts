@@ -8,14 +8,14 @@ interface IProductImgStyledProps {
 };
 
 export const CartWrapper = styled.View`
-    flex: 1;
     padding: 10px;
-    flex-wrap: nowrap;
     flex-direction: row;
     margin: 0 0 10px;
     border-bottom-width: 1px;
     border-bottom-color: ${THEME.primaryColor};
     padding-bottom: 20px;
+    width: 100%;
+    flex-shrink: 1;
 `;
 
 export const PriceWrapper = styled.View`
