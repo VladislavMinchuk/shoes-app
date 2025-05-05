@@ -1,11 +1,10 @@
-import { View, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { removeFromCart, clearCart, updateQuantity, selectCartTotal } from '../../store/cartSlice';
+import { removeFromCart, updateQuantity, selectCartTotal } from '../../store/cartSlice';
 import CartItem from '../../components/CartItem';
 import { useAppDispatch } from '../../store/hooks';
 import { parseToNum } from '../../helpers';
-import { THEME } from '../../const';
 import { Title } from '../../components/UI';
 
 export default function CartScreen() {

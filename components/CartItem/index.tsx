@@ -1,18 +1,15 @@
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Entypo from '@expo/vector-icons/Entypo';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { Ionicons, AntDesign, MaterialCommunityIcons, Entypo, FontAwesome6 } from '@expo/vector-icons';
 import { ButtonControls, CartProductImage, CartWrapper, LabelValueText, PriceWrapper, QuantityBox } from "./styles";
 import { CartItem as CartItemInterface } from '../../store/interfaces';
-import { PoductLabel, PrimaryButton, SecondaryButton, UnderlineDecor, WhiteText } from "../UI";
+import { PoductLabel, UnderlineDecor } from "../UI";
 import { selectProductById } from "../../store/productSlice";
-import { View, Text, TouchableOpacity, Button, TextInput } from "react-native";
-import { parseToNum } from "../../helpers";
+import { View, Text, TouchableOpacity } from "react-native";
+import { numericStringValue, parseToNum } from "../../helpers";
 import { THEME } from "../../const";
-import ModalWrapper from "../Modal";
-import { useState } from "react";
+import QuantityModal from "../QuantityModal";
+import ModalAlert from "../ModalAlert/ModalAlert";
 
 interface CartItemProps {
     item: CartItemInterface,
@@ -20,39 +17,41 @@ interface CartItemProps {
     onCartDecrease: (id: string, quantity: number) => void,
     onQuantityUpdate: (id: string, quantity: number) => void,
     onCartRemove: (id: string) => void,
-}
+};
 
 const CartItem: React.FC<CartItemProps> = ({ item, onCartIncrease, onCartDecrease, onCartRemove, onQuantityUpdate }) => {
-    const [visible, setVisible] = useState(false);
-    const [quantityModal, setQuantityModal] = useState(false);
+    const productSelector = useMemo(() => selectProductById(item.productId), [item.productId]);
+    const productItem = useSelector(productSelector);
+    const [isAlertVisible, setIsAlertVisible] = useState(false);
+    const [isQuantityModalVisible, setIsQuantityModalVisible] = useState(false);
     const [inputQuantity, setInputQuantity] = useState(`${item.quantity || 0}`);
-    const productItem = useSelector(selectProductById(item.productId));
     const totalCalc = (price: string | number, quantity: string | number): number => {
         return parseToNum(price) * parseToNum(quantity);
     };
     const incQuantity = () => { onCartIncrease(item.id, item.quantity); };
     const decQuantity = () => {
-        if (item.quantity === 1) { return setVisible(true); }
+        if (item.quantity === 1) { return setIsAlertVisible(true); }
         onCartDecrease(item.id, item.quantity);
     };
     const handleRemove = () => {
         onCartRemove(item.id);
-        setVisible(false);
+        setIsAlertVisible(false);
     };
     const handleQuantityModal = () => {
         onQuantityUpdate(item.id, parseToNum(inputQuantity));
-        setQuantityModal(false);
+        setIsQuantityModalVisible(false);
     };
     const handleQuantityInput = (value: string) => {
-        const numericValue = value.replace(/[^0-9]/g, '');
-        setInputQuantity(numericValue);
+        setInputQuantity(numericStringValue(value));
     };
     const openQuantiryModal = () => {
         setInputQuantity(`${item.quantity}`);
-        setQuantityModal(true);
+        setIsQuantityModalVisible(true);
     };
-
-
+    const closeQuantiryModal = () => {
+        setInputQuantity('0');
+        setIsQuantityModalVisible(false);
+    };
 
     return (
         <CartWrapper>
@@ -78,48 +77,28 @@ const CartItem: React.FC<CartItemProps> = ({ item, onCartIncrease, onCartDecreas
                         <QuantityBox onPress={() => openQuantiryModal()}><Text style={{ fontSize: 20 }}>{item.quantity}</Text></QuantityBox>
                         <ButtonControls onPress={incQuantity}><AntDesign name="plussquareo" size={30} color={THEME.primaryColor} /></ButtonControls>
                     </PriceWrapper>
-                    <TouchableOpacity onPress={() => setVisible(true)}>
+                    <TouchableOpacity onPress={() => setIsAlertVisible(true)}>
                         <Ionicons name="trash-outline" size={30} color={THEME.secondaryColor} />
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <ModalWrapper visible={visible} onClose={() => setVisible(false)}>
-                <Text style={{ fontSize: 18, marginBottom: 10, textAlign: 'center' }}>Видалити?</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <PrimaryButton onPress={() => {handleRemove();}}>
-                        <WhiteText>Так</WhiteText>
-                    </PrimaryButton>
-                    <SecondaryButton onPress={() => {setVisible(false);}}>
-                        <WhiteText>Ні</WhiteText>
-                    </SecondaryButton>
-                </View>
-            </ModalWrapper>
+            <ModalAlert
+                title="Видалити?"
+                isVisible={isAlertVisible}
+                onClose={() => setIsAlertVisible(false)}
+                onAccept={() => handleRemove()}
+                onDecline={() => setIsAlertVisible(false)}
+            />
 
-            <ModalWrapper visible={quantityModal} onClose={() => setQuantityModal(false)}>
-                <Text style={{ fontSize: 18, marginBottom: 10, textAlign: 'center' }}>Введіть кількість</Text>
-                <TextInput
-                    value={inputQuantity}
-                    onChangeText={handleQuantityInput}
-                    placeholder="Кількість"
-                    keyboardType="numeric"
-                    style={{
-                        borderWidth: 1,
-                        borderColor: '#ccc',
-                        padding: 10,
-                        borderRadius: 8,
-                        marginBottom: 15,
-                    }}
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <PrimaryButton onPress={() => {handleQuantityModal();}}>
-                        <Entypo name="check" size={24} color="white" />
-                    </PrimaryButton>
-                    <SecondaryButton onPress={() => {setQuantityModal(false);}}>
-                        <Entypo name="cross" size={24} color="white" />
-                    </SecondaryButton>
-                </View>
-            </ModalWrapper>
+            <QuantityModal
+                isVisible={isQuantityModalVisible}
+                baseQuantity={inputQuantity}
+                setBaseQuantity={handleQuantityInput}
+                onDecline={() => setIsQuantityModalVisible(false)}
+                onAccept={handleQuantityModal}
+                onClose={closeQuantiryModal}
+            />
         </CartWrapper>
     );
 };
