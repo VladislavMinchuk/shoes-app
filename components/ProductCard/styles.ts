@@ -12,8 +12,9 @@ interface IProductImgStyledProps {
 };
 
 export const ProductCardStyled = styled.View<IProductCardStyledProps>`
-    width: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].width};
-    height: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].height};
+    max-width: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].width};
+    width: 100%;
+    /* height: ${({ cardSize }: IProductCardStyledProps) => CARD_SIZE[cardSize].height}; */
     margin: 0 0 10px;
     border-bottom-width: 1px;
     border-bottom-color: ${THEME.primaryColor};

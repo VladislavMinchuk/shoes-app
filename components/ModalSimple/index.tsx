@@ -16,7 +16,6 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({ visible, onClose, children 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{ flex: 1 }}
         >
-        
           <Overlay>
             <TouchableWithoutFeedback>
               <ModalContainer>

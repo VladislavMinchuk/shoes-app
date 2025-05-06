@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import ModalWrapper from "../Modal";
+import ModalWrapper from "../ModalSimple";
 import { PrimaryButton, SecondaryButton, WhiteText } from "../UI";
 
 export type ModalAlertProps = {

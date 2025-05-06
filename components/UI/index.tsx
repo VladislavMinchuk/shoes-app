@@ -23,9 +23,23 @@ export const PrimaryButton = styled.TouchableOpacity`
     background-color: ${THEME.primaryColor};
 `;
 
+export const PrimaryButtonOutline = styled.TouchableOpacity`
+    padding: 10px 20px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: ${THEME.primaryColor};
+`;
+
 export const SecondaryButton = styled.TouchableOpacity`
     padding: 10px 20px;
     background-color: ${THEME.secondaryColor};
+`;
+
+export const SecondaryButtonOutline = styled.TouchableOpacity`
+    padding: 10px 20px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: ${THEME.secondaryColor};
 `;
 
 export const WhiteButtonText = styled.Text`
@@ -91,6 +105,14 @@ export const PoductLabel = styled.Text`
 
 export const WhiteText = styled.Text`
     color: ${COLORS.white};
+`;
+
+export const SecondaryText = styled.Text`
+    color: ${THEME.secondaryColor};
+`;
+
+export const PrimaryText = styled.Text`
+    color: ${THEME.primaryColor};
 `;
 
 export const UnderlineDecor = styled.View`

@@ -7,4 +7,5 @@ export type TabParamList  = {
 export type RootStackParamList = {
     Tabs: { screen?: keyof TabParamList };
     Product: { productId: string };
+    ProductList: {};
 };

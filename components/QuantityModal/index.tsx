@@ -1,5 +1,5 @@
 import { TextInput, View, Text, KeyboardAvoidingView, Platform } from "react-native";
-import ModalWrapper from "../Modal";
+import ModalWrapper from "../ModalSimple";
 import { PrimaryButton, SecondaryButton } from "../UI";
 import { Entypo } from "@expo/vector-icons";
 

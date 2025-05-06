@@ -8,7 +8,7 @@ import { Container, ScrollContainer, SectionTitle } from '../../components/UI';
 import ProductCard from '../../components/ProductCard';
 import Fotoer from '../../blocks/Footer';
 import HeroSection from '../../blocks/HeroSection';
-import { THEME } from '../../const';
+import { CARD_SIZE, THEME } from '../../const';
 import CategorySetion from '../../blocks/CategorySection';
 import { selectAllProducts, setProducts } from '../../store/productSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -36,7 +36,7 @@ export default function HomeScreen() {
   };
 
   const renderItem = ({ item }: { item: typeof products[0] }) => (
-    <View style={{ marginRight: 20 }}>
+    <View style={{ marginRight: 20, width: 200 }}>
       <ProductCard cardSize='md' product={item} onPress={() => navigation.navigate('Product', { productId: item.id })} />
     </View>
   );
