@@ -1,17 +1,20 @@
-import { Pressable, View, Text } from "react-native";
+import { View } from "react-native";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useState } from "react";
 import ModalSide from "../../components/ModalSide";
 import ProductFilters from "../../components/ProductFilters";
-import { CloseButton, FilterButton, FilterWrapper } from "./styles";
+import { ApplyButton, CloseButton, FilterButton, FilterWrapper } from "./styles";
 import { COLORS, THEME } from "../../const";
-import { PrimaryText, SecondaryButton, SecondaryText, WhiteText } from "../../components/UI";
+import { WhiteText } from "../../components/UI";
 
 
 const FilterSectoin: React.FC = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-
+    const filterSubmit = () => {
+        // submit
+        setIsModalVisible(false);
+    };
     
     return (
         <View style={{ marginBottom: 20 }}>
@@ -23,7 +26,6 @@ const FilterSectoin: React.FC = () => {
             </View>
             <ModalSide
                 modalVisible={isModalVisible}
-                onclose={() => setIsModalVisible(false)}
                 onBackdropPress={() => setIsModalVisible(false)}
                 onSwipeComplete={() => setIsModalVisible(false)}
             >
@@ -31,7 +33,10 @@ const FilterSectoin: React.FC = () => {
                     <CloseButton onPress={() => setIsModalVisible(false)}>
                         <AntDesign name="closesquareo" size={30} color={THEME.secondaryColor} />
                     </CloseButton>
-                    <ProductFilters />
+                    <ProductFilters/>
+                    <ApplyButton onPress={() => filterSubmit()}>
+                        <WhiteText>Застосувати</WhiteText>
+                    </ApplyButton>
                 </FilterWrapper>
             </ModalSide>
         </View>

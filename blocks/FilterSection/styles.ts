@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { COLORS, THEME } from "../../const";
-import { PrimaryButtonOutline, SecondaryButton, SecondaryButtonOutline } from "../../components/UI";
+import { PrimaryButton, PrimaryButtonOutline, SecondaryButton, SecondaryButtonOutline } from "../../components/UI";
 
 export const FilterWrapper = styled.View`
     flex: 1;
@@ -20,4 +20,8 @@ export const FilterButton = styled(SecondaryButton)`
     width: 100px;
     padding: 5px;
     margin-left: auto;
+`;
+
+export const ApplyButton = styled(PrimaryButton)`
+    align-items: center;
 `;

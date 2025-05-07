@@ -40,7 +40,7 @@ export const CategorySetion = () => {
         </Container>
         <FlatList
           data={categories}
-          keyExtractor={({ title, img }) => title}
+          keyExtractor={({ title }) => title}
           scrollEnabled={false}
           renderItem={({item}) => (
             <CategoryCard title={item.title} image={item.img} onPress={() => goToList(item.title)} />
